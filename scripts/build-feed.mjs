@@ -114,6 +114,7 @@ async function main() {
   await fs.mkdir(new URL("../data/", import.meta.url), { recursive: true });
   await fs.writeFile(new URL("../data/feed.json", import.meta.url), JSON.stringify(feed, null, 2));
   console.log(`Wrote data/feed.json with ${ranked.length} items.`);
+   process.exit(0);
 }
 
 main().catch((err) => {
