@@ -1,0 +1,19 @@
+{
+  "generatedAt": "2026-09-04T06:00:00.000Z",
+  "itemCount": 2,
+  "items": [
+    {
+      "title": "Sample story — replace by running npm run build-feed",
+      "link": "https://example.com",
+      "source": "Setup",
+      "sourceType": "general",
+      "region": "N/A",
+      "publishedAt": "2026-09-04T06:00:00.000Z",
+      "snippet": "This is placeholder data. Add your ANTHROPIC_API_KEY and run the build script, or wait for the first scheduled GitHub Action run.",
+      "alsoReportedBy": [],
+      "personalScore": 50,
+      "businessScore": 50,
+      "topic": "setup"
+    }
+  ]
+}
