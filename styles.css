@@ -1,0 +1,152 @@
+:root {
+  --bg: #F7F7F5;
+  --ink: #1A1A18;
+  --muted: #6B6A63;
+  --hairline: #E2E0D8;
+  --business: #0E6B54;
+  --business-bg: #E7F2EE;
+  --personal: #3B5166;
+  --personal-bg: #EAEEF2;
+  --max-width: 640px;
+}
+
+* { box-sizing: border-box; }
+
+html, body {
+  margin: 0;
+  padding: 0;
+  background: var(--bg);
+  color: var(--ink);
+  font-family: system-ui, -apple-system, "Segoe UI", sans-serif;
+}
+
+body {
+  padding-bottom: 48px;
+}
+
+.app-header {
+  position: sticky;
+  top: 0;
+  background: var(--bg);
+  border-bottom: 1px solid var(--hairline);
+  z-index: 5;
+}
+
+.header-row {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 18px 20px 8px;
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+}
+
+h1 {
+  font-size: 19px;
+  font-weight: 500;
+  margin: 0;
+}
+
+.updated {
+  font-size: 12px;
+  color: var(--muted);
+}
+
+.tabs {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  display: flex;
+  gap: 4px;
+  padding: 4px 16px 12px;
+}
+
+.tab {
+  border: none;
+  background: transparent;
+  font-family: inherit;
+  font-size: 14px;
+  color: var(--muted);
+  padding: 6px 12px;
+  border-radius: 999px;
+  cursor: pointer;
+}
+
+.tab[aria-selected="true"] {
+  background: var(--ink);
+  color: var(--bg);
+}
+
+.list {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 4px 20px 0;
+}
+
+.item {
+  padding: 16px 0;
+  border-bottom: 1px solid var(--hairline);
+  text-decoration: none;
+  color: inherit;
+  display: block;
+}
+
+.item:last-child { border-bottom: none; }
+
+.item-meta {
+  font-size: 12px;
+  color: var(--muted);
+  margin-bottom: 4px;
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+
+.item-source { color: var(--muted); }
+
+.tag {
+  font-size: 11px;
+  padding: 1px 8px;
+  border-radius: 999px;
+}
+
+.tag.business { background: var(--business-bg); color: var(--business); }
+.tag.personal { background: var(--personal-bg); color: var(--personal); }
+
+.item h2 {
+  font-family: Georgia, "Iowan Old Style", "Times New Roman", serif;
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 1.35;
+  margin: 0 0 4px;
+  max-width: 68ch;
+}
+
+.item p {
+  font-size: 14px;
+  line-height: 1.5;
+  color: var(--muted);
+  margin: 0;
+  max-width: 68ch;
+}
+
+.empty-state {
+  max-width: var(--max-width);
+  margin: 40px auto;
+  padding: 0 20px;
+  color: var(--muted);
+  font-size: 14px;
+  text-align: center;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #171715;
+    --ink: #EDEBE3;
+    --muted: #99968A;
+    --hairline: #2C2B27;
+    --business: #6FD7B8;
+    --business-bg: #16302A;
+    --personal: #9CB4C9;
+    --personal-bg: #1E262E;
+  }
+}

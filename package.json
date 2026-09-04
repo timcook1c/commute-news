@@ -1,0 +1,13 @@
+{
+  "name": "commute-news",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build-feed": "node scripts/build-feed.mjs",
+    "check-sources": "node scripts/check-sources.mjs"
+  },
+  "dependencies": {
+    "rss-parser": "^3.13.0"
+  }
+}

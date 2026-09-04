@@ -1,0 +1,20 @@
+{
+  "_note": "Edit this to tune what counts as 'for you' vs 'business-relevant'. Plain language — it's dropped straight into the scoring prompt.",
+  "personal_interests": [
+    "leisure, hospitality and travel industry strategy",
+    "consumer and retail trends",
+    "private equity and PE-backed companies",
+    "restaurant and dining industry",
+    "UK and European business and economic news",
+    "cycling and endurance sport",
+    "AI and technology developments relevant to business strategy"
+  ],
+  "business_signals": [
+    "significant stock market moves, especially in consumer, leisure, hospitality and retail names",
+    "private equity deals, fundraises, exits and M&A",
+    "oil and energy price moves",
+    "interest rate decisions and central bank policy",
+    "global economic or geopolitical crises with market impact",
+    "major earnings or profit warnings from consumer-facing companies"
+  ]
+}

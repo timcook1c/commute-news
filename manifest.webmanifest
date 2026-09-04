@@ -1,0 +1,11 @@
+{
+  "name": "Commute News",
+  "short_name": "Commute",
+  "start_url": "./index.html",
+  "display": "standalone",
+  "background_color": "#F7F7F5",
+  "theme_color": "#F7F7F5",
+  "icons": [
+    { "src": "icons/icon.svg", "sizes": "any", "type": "image/svg+xml" }
+  ]
+}
