@@ -1,5 +1,5 @@
 {
-  "_note": "Edit this to tune what counts as 'for you' vs 'business-relevant'. Plain language — it's dropped straight into the scoring prompt.",
+  "_note": "Edit this to tune what counts as 'for you', 'business-relevant' and 'sport'. Plain language — it's dropped straight into the scoring prompt.",
   "personal_interests": [
     "leisure, hospitality and travel industry strategy",
     "consumer and retail trends",
@@ -16,5 +16,9 @@
     "interest rate decisions and central bank policy",
     "global economic or geopolitical crises with market impact",
     "major earnings or profit warnings from consumer-facing companies"
+  ],
+  "sport_interests": [
+    "football — Premier League, Champions League, England national team, major transfer news",
+    "Formula 1 — race results, standings, and major driver or team news (lower priority than football)"
   ]
 }
