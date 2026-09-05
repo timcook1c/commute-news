@@ -7,6 +7,8 @@
   --business-bg: #E7F2EE;
   --personal: #3B5166;
   --personal-bg: #EAEEF2;
+  --sport: #99551A;
+  --sport-bg: #F5EBDF;
   --max-width: 640px;
 }
 
@@ -111,6 +113,33 @@ h1 {
 
 .tag.business { background: var(--business-bg); color: var(--business); }
 .tag.personal { background: var(--personal-bg); color: var(--personal); }
+.tag.sport { background: var(--sport-bg); color: var(--sport); }
+
+.region-group + .region-group {
+  margin-top: 8px;
+}
+
+.region-heading {
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--muted);
+  margin: 20px 0 4px;
+  padding-top: 8px;
+  border-top: 1px solid var(--hairline);
+}
+
+.region-group:first-child .region-heading {
+  border-top: none;
+  margin-top: 4px;
+}
+
+.topic-heading {
+  font-size: 12px;
+  font-weight: 400;
+  color: var(--muted);
+  margin: 12px 0 0;
+  text-transform: lowercase;
+}
 
 .item h2 {
   font-family: Georgia, "Iowan Old Style", "Times New Roman", serif;
@@ -148,5 +177,7 @@ h1 {
     --business-bg: #16302A;
     --personal: #9CB4C9;
     --personal-bg: #1E262E;
+    --sport: #E0AD75;
+    --sport-bg: #2E2216;
   }
 }
