@@ -17,15 +17,16 @@ async function loadProfile() {
 }
 
 function buildPrompt(profile, batch) {
-  return `You are scoring news headlines for one specific reader, for a commute reading app. Score each item on two 0-100 scales:
+  return `You are scoring news headlines for one specific reader, for a commute reading app. Score each item on three 0-100 scales:
 
 - personal_score: how relevant to this reader's personal interests: ${profile.personal_interests.join("; ")}
 - business_score: how relevant to these business/market signals: ${profile.business_signals.join("; ")}
+- sport_score: how relevant to these sport interests: ${profile.sport_interests.join("; ")}. Score 0 for any other sport (rugby, cricket, tennis, etc unless it's genuinely major breaking news).
 
-Score 0 if not relevant at all. Score 80+ only for genuinely important, high-signal stories (not routine coverage). Also assign one short topic tag (2-3 words, lowercase, e.g. "private equity", "oil prices", "consumer retail", "global crisis", "general world news").
+Score 0 on a scale if not relevant to it at all — most stories should score high on at most one scale. Score 80+ only for genuinely important, high-signal stories (not routine coverage). Also assign one short topic tag (2-3 words, lowercase, e.g. "private equity", "oil prices", "consumer retail", "global crisis", "football", "formula 1", "general world news").
 
 Return ONLY a JSON array, no prose, no markdown fences, one object per input item in the same order:
-[{"personal_score": 0, "business_score": 0, "topic": "..."}]
+[{"personal_score": 0, "business_score": 0, "sport_score": 0, "topic": "..."}]
 
 Items:
 ${batch.map((it, i) => `${i + 1}. [${it.source}] ${it.title} — ${it.snippet}`).join("\n")}`;
@@ -66,7 +67,7 @@ async function scoreBatch(profile, batch) {
     scores = JSON.parse(text);
   } catch (err) {
     console.error("Failed to parse scoring response, skipping batch:", text.slice(0, 300));
-    return batch.map(() => ({ personal_score: 0, business_score: 0, topic: "unscored" }));
+    return batch.map(() => ({ personal_score: 0, business_score: 0, sport_score: 0, topic: "unscored" }));
   }
   return scores;
 }
@@ -91,9 +92,10 @@ async function main() {
     const batch = items.slice(i, i + BATCH_SIZE);
     const scores = await scoreBatch(profile, batch);
     batch.forEach((item, j) => {
-      const s = scores[j] || { personal_score: 0, business_score: 0, topic: "unscored" };
+      const s = scores[j] || { personal_score: 0, business_score: 0, sport_score: 0, topic: "unscored" };
       item.personalScore = s.personal_score ?? 0;
       item.businessScore = s.business_score ?? 0;
+      item.sportScore = s.sport_score ?? 0;
       item.topic = s.topic || "unscored";
     });
     console.log(`  scored ${Math.min(i + BATCH_SIZE, items.length)}/${items.length}`);
@@ -102,7 +104,11 @@ async function main() {
   // Keep the top items by whichever score is higher, so the feed stays a manageable
   // size for offline caching on a phone.
   const ranked = items
-    .sort((a, b) => Math.max(b.personalScore, b.businessScore) - Math.max(a.personalScore, a.businessScore))
+    .sort(
+      (a, b) =>
+        Math.max(b.personalScore, b.businessScore, b.sportScore) -
+        Math.max(a.personalScore, a.businessScore, a.sportScore)
+    )
     .slice(0, MAX_ITEMS_OUT);
 
   const feed = {
@@ -114,7 +120,7 @@ async function main() {
   await fs.mkdir(new URL("../data/", import.meta.url), { recursive: true });
   await fs.writeFile(new URL("../data/feed.json", import.meta.url), JSON.stringify(feed, null, 2));
   console.log(`Wrote data/feed.json with ${ranked.length} items.`);
-   process.exit(0);
+  process.exit(0);
 }
 
 main().catch((err) => {
